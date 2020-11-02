@@ -1,25 +1,28 @@
-package baitaptuan3_threadpool;
+package baithuongkihtpt;
 
 public class WorkerThread implements Runnable {
-    private int num;
- 
-    public WorkerThread(int num) {
+
+    private double num;
+
+    public WorkerThread (double num)
+    {
         this.num = num;
-    }   
- 
+    }
+
+    @Override
     public void run() {
-        if(isPrimeNumber(num))
+        if(checkPerfectSquare(num))
         {
-            System.out.println(num + " la SNT");
+            System.out.println((int) num + " la so chinh phuong");
         }
         else
         {
-            System.out.println(num + "khong la SNT");
+            System.out.println((int) num + " khong la so chinh phuong");
         }
-        processMessage();
+
     }
- 
-    private void processMessage() {
+
+    private void processCommand() {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -27,20 +30,10 @@ public class WorkerThread implements Runnable {
         }
     }
 
-    // check so nguyen to
-    public static boolean isPrimeNumber(int n) {
-        // so nguyen n < 2 khong phai la so nguyen to
-        if (n < 2) {
-            return false;
-        }
-        // check so nguyen to khi n >= 2
-        int squareRoot = (int) Math.sqrt(n);
-        for (int i = 2; i <= squareRoot; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
+    static boolean checkPerfectSquare(double x)
+    {
+        double sq = Math.sqrt(x);
+        return ((sq - Math.floor(sq)) == 0);
     }
-
+    
 }
